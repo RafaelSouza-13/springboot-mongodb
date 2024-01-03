@@ -12,6 +12,7 @@ import com.rafael.springbootmondodb.Repositories.PostRepositorie;
 import com.rafael.springbootmondodb.Repositories.UserRepositorie;
 import com.rafael.springbootmondodb.domain.Post;
 import com.rafael.springbootmondodb.domain.User;
+import com.rafael.springbootmondodb.dto.AuthorDto;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
@@ -31,10 +32,11 @@ public class Instantiation implements CommandLineRunner {
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Adeus pessoal, irei viajar", maria);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei bem leizs", maria);
-
         userRepositorie.saveAll(Arrays.asList(maria, alex, bob));
+        
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Adeus pessoal, irei viajar", new AuthorDto(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei bem leizs", new AuthorDto(maria));
+
         postRepositorie.saveAll(Arrays.asList(post1, post2));
 
 
